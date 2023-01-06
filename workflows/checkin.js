@@ -216,10 +216,10 @@ async function run(args) {
   }
 
   const message = messageList.join(`\n${"-".repeat(15)}\n`);
-  pushMessage({
-    subject: "掘金每日签到",
-    text: message
-  });
+  // pushMessage({
+  //   subject: "掘金每日签到",
+  //   text: message
+  // });
 }
 
 run(process.argv.splice(2)).catch(error => {

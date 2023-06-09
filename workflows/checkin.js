@@ -108,21 +108,21 @@ class CheckIn {
     this.luckyValueProbability = getProbabilityOfWinning(this.sumPoint);
 
     // 收集bug
-    const bugfix = juejin.bugfix();
+//     const bugfix = juejin.bugfix();
 
-    const competition = await bugfix.getCompetition();
-    const bugfixInfo = await bugfix.getUser(competition);
-    this.userOwnBug = bugfixInfo.user_own_bug;
+//     const competition = await bugfix.getCompetition();
+//     const bugfixInfo = await bugfix.getUser(competition);
+//     this.userOwnBug = bugfixInfo.user_own_bug;
 
-    try {
-      const notCollectBugList = await bugfix.getNotCollectBugList();
-      await bugfix.collectBugBatch(notCollectBugList);
-      this.bugStatus = 1;
-      this.collectBugCount = notCollectBugList.length;
-      this.userOwnBug += this.collectBugCount;
-    } catch (e) {
-      this.bugStatus = 2;
-    }
+//     try {
+//       const notCollectBugList = await bugfix.getNotCollectBugList();
+//       await bugfix.collectBugBatch(notCollectBugList);
+//       this.bugStatus = 1;
+//       this.collectBugCount = notCollectBugList.length;
+//       this.userOwnBug += this.collectBugCount;
+//     } catch (e) {
+//       this.bugStatus = 2;
+//     }
 
     // 调用埋点
     const sdk = juejin.sdk();
@@ -180,13 +180,7 @@ class CheckIn {
 掘友: ${this.username}
 ${this.todayStatus === 1 ? `签到成功 +${this.incrPoint} 矿石` : this.todayStatus === 2 ? "今日已完成签到" : "签到失败"}
 ${this.dipStatus === 1 ? `沾喜气 +${this.dipValue} 幸运值` : this.dipStatus === 2 ? "今日已经沾过喜气" : "沾喜气失败"}
-${
-  this.bugStatus === 1
-    ? this.collectBugCount > 0
-      ? `收集Bug +${this.collectBugCount}`
-      : "没有可收集Bug"
-    : "收集Bug失败"
-}
+
 连续签到天数 ${this.contCount}
 累计签到天数 ${this.sumCount}
 当前矿石数 ${this.sumPoint}

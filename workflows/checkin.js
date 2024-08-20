@@ -60,17 +60,17 @@ class CheckIn {
     this.contCount = counts.cont_count;
     this.sumCount = counts.sum_count;
 
-    const luckyusersResult = await growth.getLotteriesLuckyUsers();
-    if (luckyusersResult.count > 0) {
-      const no1LuckyUser = luckyusersResult.lotteries[0];
-      const dipLuckyResult = await growth.dipLucky(no1LuckyUser.history_id);
-      if (dipLuckyResult.has_dip) {
-        this.dipStatus = 2;
-      } else {
-        this.dipStatus = 1;
-        this.dipValue = dipLuckyResult.dip_value;
-      }
-    }
+    // const luckyusersResult = await growth.getLotteriesLuckyUsers();
+    // if (luckyusersResult.count > 0) {
+    //   const no1LuckyUser = luckyusersResult.lotteries[0];
+    //   const dipLuckyResult = await growth.dipLucky(no1LuckyUser.history_id);
+    //   if (dipLuckyResult.has_dip) {
+    //     this.dipStatus = 2;
+    //   } else {
+    //     this.dipStatus = 1;
+    //     this.dipValue = dipLuckyResult.dip_value;
+    //   }
+    // }
 
     const luckyResult = await growth.getMyLucky();
     this.luckyValue = luckyResult.total_value;
